@@ -15,7 +15,7 @@ export default function AddProductPage() {
   })
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     
@@ -57,7 +57,7 @@ export default function AddProductPage() {
         console.error('API Error:', data.error)
         alert('Error: ' + (data.error || 'Unknown error occurred'))
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Network Error:', error)
       alert('Network error: ' + error.message)
     } finally {
@@ -65,7 +65,7 @@ export default function AddProductPage() {
     }
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -276,7 +276,7 @@ export default function AddProductPage() {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              rows="4"
+              rows={4}
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter product description"
             />
